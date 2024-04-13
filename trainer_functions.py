@@ -15,6 +15,7 @@ def trainer_login():
 
 
 def print_timeslots(trainer_id):
+    # get times and print
     times = conn.view_available_trainer_times(trainer_id)
     if (times):
         p.print_trainer_schedule(times)
@@ -23,6 +24,7 @@ def print_timeslots(trainer_id):
 
 
 def add_timeslot(trainer_id):
+    # insert time slot
     day = input("Please enter the day: ")
     time = input("Please enter time slot(HH in 24h format): ")
     if (conn.add_available_trainer_times(trainer_id, day, time)):
@@ -32,6 +34,7 @@ def add_timeslot(trainer_id):
 
 
 def delete_timeslot(trainer_id):
+    # get current times
     times = conn.view_available_trainer_times(trainer_id)
     if (times):
         p.print_trainer_schedule(times)
@@ -39,38 +42,43 @@ def delete_timeslot(trainer_id):
         print("No times set")
         return
 
+    # select time to delete
     index = int(input("Enter the index of the time slot you wish to delete: "))
+
+    # delete time
     if (conn.delete_available_trainer_times(trainer_id, times[index][0], times[index][1])):
         print("Time slot deleted")
     else:
         print("Failed to delete time slot")
 
 def get_user_by_name():
+    # get user by name and print their dashboard
     first_name = input("Please enter the user's first name: ")
     last_name = input("Please enter the user's last name: ")
     data = conn.search_user_by_name(first_name, last_name)
     if data:
-        print(data)
+        get_user_dashboard(data[0][0])
     else:
         print("No user found")
         return
-    get_user_dashboard(data[0][0])
 
 def get_user_by_email():
+    # get user by email and print their dashboard
     email = input("Please enter the user's email: ")
     data = conn.search_user_by_email(email)
     if data:
-        print(data)
+        get_user_dashboard(data[0][0])
     else:
         print("No user found")
         return
-    get_user_dashboard(data[0][0])
 
 def get_user_dashboard(user_id):
+    # get dashboard info
     exercises = conn.get_exercise_routines(user_id)
     achievements = conn.get_fitness_achievements(user_id)
     health_stats = conn.get_health_metrics(user_id)
 
+    # print dashboard
     print(" USER'S DASHBOARD:")
     print("User's exercises are:")
     if exercises:
