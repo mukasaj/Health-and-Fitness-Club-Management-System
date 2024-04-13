@@ -46,7 +46,7 @@ def update_booking():
     else:
         print("No bookings")
         return
-    booking_index = int(input("Enter index of booking to update"))
+    booking_index = int(input("Enter index of booking to update: "))
     date = input("Enter date of booking: ")
     time = s.get_time_from_user("Enter booking time:")
 
@@ -66,7 +66,7 @@ def delete_booking():
     else:
         print("No bookings")
         return
-    booking_index = int(input("Enter index of booking to cancel"))
+    booking_index = int(input("Enter index of booking to cancel: "))
 
     if conn.delete_room_booking(bookings[booking_index][0]):
         print("Booking successfully cancelled")
@@ -130,7 +130,7 @@ def view_bills():
         print("No bills")
 
 def create_bill():
-    email = input("Please enter the user's email:")
+    email = input("Please enter the user's email: ")
     data = conn.search_user_by_email(email)
     if not data:
         print("No user found")

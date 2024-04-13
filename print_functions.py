@@ -23,6 +23,18 @@ def print_fitness_achievements(achievements):
         print("{}: Achievement: {}".format(achievement_index, achievement[0]))
         achievement_index += 1
 
+def print_training_sessions(sessions):
+    session_index = 0
+    for session in sessions:
+        print("{}: Trainer: {} {},\tDate: {},\tTime: {},\tInfo: {}".
+              format(session_index,
+                     session[1],
+                     session[2],
+                     session[3].strftime("%Y-%m-%d"),
+                     session[4].strftime("%H:%M"),
+                     session[5]
+                     ))
+        session_index += 1
 
 def print_trainer_schedule(times):
     time_index = 0

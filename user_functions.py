@@ -111,7 +111,6 @@ def update_user_metric(user_id):
         print("Successfully updated health metrics")
     else:
         print("Failed to update health metrics")
-    input("Press enter to continue...")
 
 def view_exercise_routines(user_id):
     exercises = conn.get_exercise_routines(user_id)
@@ -148,7 +147,7 @@ def delete_exercise_routine(user_id):
     else:
         print("You have no exercise routines")
         return
-    exercises_index = int(input("Enter exercise index you wish to delete:"))
+    exercises_index = int(input("Enter exercise index you wish to delete: "))
     exercise = exercises[exercises_index][0]
     if conn.delete_exercise_routine(user_id, exercise):
         print("Exercise routine successfully deleted")
@@ -188,7 +187,7 @@ def delete_achievement(user_id):
     else:
         print("You have no fitness achievements")
         return
-    exercises_index = int(input("Enter achievement index you wish to delete:"))
+    exercises_index = int(input("Enter achievement index you wish to delete: "))
     exercise = exercises[exercises_index][0]
     if conn.delete_exercise_routine(user_id, exercise):
         print("Fitness achievement successfully deleted")
@@ -211,13 +210,13 @@ def dashboard(user_id):
     else:
         print("No achievements found")
     print("\nYour health metrics:")
-    print("Height: {}".format(health_stats[0][0]))
-    print("Weight: {}".format(health_stats[0][1]))
+    print('Height: {}"'.format(health_stats[0][0]))
+    print("Weight: {}lbs".format(health_stats[0][1]))
 
 def view_training_sessions(user_id):
     sessions = conn.get_training_sessions(user_id)
     if sessions:
-        p.print_fitness_achievements(sessions)
+        p.print_training_sessions(sessions)
     else:
         print("You have no training sessions scheduled")
 def schedule_training_session(user_id):
@@ -225,9 +224,13 @@ def schedule_training_session(user_id):
 
     trainer_index = 0
     if trainers:
+        print("Trainers:")
         for trainer in trainers:
-            print(f"{trainer_index} - {trainer}")
+            print(f"{trainer_index}: {trainer[1]} {trainer[2]}")
             trainer_index += 1
+    else:
+        print("No trainers")
+        return
 
     selected_trainer = int(input("Please into the index of the trainer you'd like to book a session with: "))
 
@@ -241,11 +244,10 @@ def schedule_training_session(user_id):
         print("This trainer has no times available")
         return
 
-    date = input("Please enter you session date: ")
-    time = input("Please enter you session time: ")
+    date = s.get_date_from_user("Please enter you session date: ")
+    time = s.get_time_from_user("Please enter you session time: ")
     weekday = s.map_python_weekday_to_string(datetime.datetime.strptime(date, "%Y-%m-%d").weekday())
     mapped_time = datetime.datetime.strptime(time, '%H:%M').time()
-    print((str(weekday).upper(), time))
     if (str(weekday).upper(), mapped_time) not in times:
         print(f"This trainer is not available at {time} on {weekday}")
         return
@@ -254,7 +256,7 @@ def schedule_training_session(user_id):
         print(f"This trainer is not available at {time} on {date}")
         return
 
-    session_info = "Please enter the session info: "
+    session_info = input("Please enter the session info: ")
     if conn.schedule_training_session(user_id, trainer_id, date, time, session_info):
         print("Successfully scheduled training session")
     else:
@@ -263,11 +265,11 @@ def schedule_training_session(user_id):
 def cancel_training_session(user_id):
     sessions = conn.get_training_sessions(user_id)
     if sessions:
-        p.print_fitness_achievements(sessions)
+        p.print_training_sessions(sessions)
     else:
         print("You have no training sessions scheduled")
         return
-    session_index = int(input("Enter session index you wish to delete:"))
+    session_index = int(input("Enter session index you wish to delete: "))
     session_id = sessions[session_index][0]
 
     if conn.delete_training_session(session_id):
@@ -278,9 +280,7 @@ def cancel_training_session(user_id):
 def view_classes(user_id):
     classes = conn.get_registered_classes(user_id)
     if classes:
-        print("Registered classes:")
-        for cls in classes:
-            print(cls)
+        p.print_classes(classes)
     else:
         print("You are not registered for any classes.")
 
@@ -288,23 +288,23 @@ def register_for_class(user_id):
     # printing classes available for registration
     print("Available classes:")
     classes = conn.get_class_list()
-    for cls in classes:
-        print(cls)
-    class_id = input("Enter the class id of the class you wish to sign up for:")
-    if conn.register_for_class(user_id, class_id):
+    if classes:
+        p.print_classes(classes)
+    else:
+        print("No classes available.")
+    class_index = int(input("Enter the class index: "))
+    if conn.register_for_class(user_id, classes[class_index][0]):
         print("Successfully registered for class")
     else:
         print("Failed to register for class")
 def drop_class(user_id):
     classes = conn.get_registered_classes(user_id)
     if classes:
-        print("Registered classes:")
-        for cls in classes:
-            print(cls)
+        p.print_classes(classes)
     else:
         print("You are not registered for any classes.")
         return
-    class_id = input("Enter the class id of the class you wish to drop:")
+    class_id = input("Enter the class id of the class you wish to drop: ")
     if conn.drop_class(user_id, class_id):
         print("Successfully dropped class")
     else:

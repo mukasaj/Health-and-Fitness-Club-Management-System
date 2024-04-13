@@ -6,7 +6,7 @@ def get_time_from_user(prompt):
              "18:00", "19:00", "20:00", "21:00", "22:00", "23:00", "24:00"]
     time = input(prompt)
     while time not in times:
-        print("Invalid input. Format is 24h and HH:MM, all times must be on the hour (e.g 11:00)")
+        print("Invalid input. Format is 24h and HH:MM, all times must be on the hour (e.g 01:00, 11:00)")
         time = input(prompt)
     return time
 

@@ -57,7 +57,7 @@ def get_user_by_name():
     get_user_dashboard(data[0][0])
 
 def get_user_by_email():
-    email = input("Please enter the user's email:")
+    email = input("Please enter the user's email: ")
     data = conn.search_user_by_email(email)
     if data:
         print(data)
@@ -82,8 +82,8 @@ def get_user_dashboard(user_id):
         p.print_fitness_achievements(achievements)
     else:
         print("No achievements found")
-    print("\nYour health metrics:")
-    print("Height: {}".format(health_stats[0][0]))
-    print("Weight: {}".format(health_stats[0][1]))
+    print("\nUser's health metrics:")
+    print('Height: {}"'.format(health_stats[0][0]))
+    print("Weight: {}lbs".format(health_stats[0][1]))
 
 

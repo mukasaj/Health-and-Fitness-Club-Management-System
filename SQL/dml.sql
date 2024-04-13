@@ -7,10 +7,10 @@ VALUES
 
 INSERT INTO health_stats(user_id, weight, height)
 VALUES
-(1, 0, 0),
-(2, 0, 0),
-(3, 0, 0),
-(4, 0, 0);
+(1, 140, 60),
+(2, 150, 60),
+(3, 160, 60),
+(4, 180, 60);
 
 INSERT INTO trainers(email, password, first_name, last_name)
 VALUES

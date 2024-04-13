@@ -79,7 +79,7 @@ def manage_fitness_goals(user_id):
         print("Fitness goals:")
         print("1 - View fitness goals")
         print("2 - Add fitness goal")
-        print("4 - Update fitness goal")
+        print("3 - Update fitness goal")
         print("4 - Delete fitness goal")
         print("q - Back")
         choice = input(">>>")

@@ -98,8 +98,8 @@ class DatabaseConnection:
 
     def register_for_class(self, user_id, class_id):
         # registering a user for a class through the takes table
-        sql = "INSERT INTO takes VALUES (%s, %s)"
-        sql_data = (user_id, class_id)
+        sql = "INSERT INTO takes(class_id, user_id) VALUES (%s, %s)"
+        sql_data = (class_id, user_id)
         return self.execute(sql, sql_data)
 
     def get_registered_classes(self, user_id):
