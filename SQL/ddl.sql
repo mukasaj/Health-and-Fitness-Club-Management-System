@@ -1,7 +1,6 @@
 CREATE TABLE rooms(
     room_id SERIAL PRIMARY KEY,
-    room_number INT UNIQUE NOT NULL,
-    capacity INT NOT NULL
+    room_number INT UNIQUE NOT NULL
 );
 CREATE TABLE users(
     user_id SERIAL PRIMARY KEY,
@@ -24,13 +23,10 @@ CREATE TABLE admins(
 );
 CREATE TABLE classes(
     class_id SERIAL PRIMARY KEY,
-    room_id SERIAL NOT NULL,
     title VARCHAR(75) NOT NULL,
     class_info TEXT,
     date DATE NOT NULL,
-    time TIME NOT NULL,
-    FOREIGN KEY (room_id)
-        REFERENCES rooms(room_id)
+    time TIME NOT NULL
 );
 CREATE TABLE equipment(
     equipment_id SERIAL PRIMARY KEY,
@@ -42,8 +38,9 @@ CREATE TABLE equipment(
 );
 CREATE TABLE times(
     trainer_id SERIAL NOT NULL,
+    day varchar(10) NOT NULL,
     time TIME NOT NULL,
-    PRIMARY KEY (trainer_id, time),
+    PRIMARY KEY (trainer_id, day, time),
     FOREIGN KEY (trainer_id)
         REFERENCES trainers(trainer_id)
 );
@@ -68,6 +65,18 @@ CREATE TABLE takes(
     FOREIGN KEY (user_id)
         REFERENCES users(user_id)
 );
+CREATE TABLE room_bookings(
+    booking_id SERIAL PRIMARY KEY,
+    room_id SERIAL NOT NULL,
+    class_id INT,
+    date DATE NOT NULL,
+    time TIME NOT NULL,
+    info text NOT NULL,
+    FOREIGN KEY (room_id)
+        REFERENCES rooms(room_id),
+    FOREIGN KEY (class_id)
+        REFERENCES classes(class_id)
+);
 CREATE TABLE health_stats(
     user_id SERIAL PRIMARY KEY,
     weight INT,
@@ -76,20 +85,23 @@ CREATE TABLE health_stats(
         REFERENCES users(user_id)
 );
 CREATE TABLE fitness_goals(
-    user_id SERIAL PRIMARY KEY,
+    user_id SERIAL NOT NULL,
     goal TEXT NOT NULL,
+    PRIMARY KEY (user_id, goal),
     FOREIGN KEY (user_id)
         REFERENCES users(user_id)
 );
 CREATE TABLE fitness_achievements(
-    user_id SERIAL PRIMARY KEY,
+    user_id SERIAL NOT NULL,
     achievement TEXT NOT NULL,
+    PRIMARY KEY (user_id, achievement),
     FOREIGN KEY (user_id)
         REFERENCES users(user_id)
 );
-CREATE TABLE exercise_routine(
-    user_id SERIAL PRIMARY KEY,
+CREATE TABLE exercise_routines(
+    user_id SERIAL NOT NULL,
     exercise TEXT NOT NULL,
+    PRIMARY KEY (user_id, exercise),
     FOREIGN KEY (user_id)
         REFERENCES users(user_id)
 );
