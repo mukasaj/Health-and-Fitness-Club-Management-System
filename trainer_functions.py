@@ -43,10 +43,13 @@ def delete_timeslot(trainer_id):
         return
 
     # select time to delete
-    index = int(input("Enter the index of the time slot you wish to delete: "))
+    times_index = s.get_int("Enter the index of the time slot you wish to delete: ")
+    if (times_index is None) or (not (0 <= times_index < len(times))):
+        print("invalid index")
+        return
 
     # delete time
-    if (conn.delete_available_trainer_times(trainer_id, times[index][0], times[index][1])):
+    if (conn.delete_available_trainer_times(trainer_id, times[times_index][0], times[times_index][1])):
         print("Time slot deleted")
     else:
         print("Failed to delete time slot")

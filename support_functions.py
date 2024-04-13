@@ -1,4 +1,6 @@
 import datetime
+
+
 def get_time_from_user(prompt):
     # acceptable time inputs
     times = ["00:00", "01:00", "02:00", "30:00", "4:00", "5:00", "6:00", "7:00", "8:00",
@@ -9,6 +11,13 @@ def get_time_from_user(prompt):
         print("Invalid input. Format is 24h and HH:MM, all times must be on the hour (e.g 01:00, 11:00)")
         time = input(prompt)
     return time
+
+
+def get_int(prompt):
+    try:
+        return int(input(prompt))
+    except:
+        return None
 
 
 def get_date_from_user(prompt):
@@ -36,6 +45,7 @@ def map_python_weekday_to_string(weekday):
         return "SATURDAY"
     elif weekday == 6:
         return "SUNDAY"
+
 
 def wait():
     input("Press enter to continue...")

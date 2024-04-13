@@ -85,9 +85,12 @@ def update_user_goal(user_id):
         return
 
     # get goal to update and info
-    index_to_delete = int(input("Enter the index of the goal you want to update: "))
+    goals_index = s.get_int("Enter the index of the goal you want to update: ")
+    if (goals_index is None) or (not (0 <= goals_index < len(goals))):
+        print("invalid index")
+        return
     new_goal = input("Please enter your new goal: ")
-    old_goal = goals[index_to_delete][0]
+    old_goal = goals[goals_index][0]
 
     # update goal
     if conn.update_fitness_goal(user_id, old_goal, new_goal):
@@ -106,8 +109,11 @@ def delete_user_goal(user_id):
         return
 
     # get goal to delete
-    index_to_delete = int(input("Enter the index of the goal you want to delete: "))
-    goal = goals[index_to_delete][0]
+    goals_index = s.get_int("Enter the index of the goal you want to delete: ")
+    if (goals_index is None) or (not (0 <= goals_index < len(goals))):
+        print("invalid index")
+        return
+    goal = goals[goals_index][0]
 
     # delete goal
     if conn.delete_fitness_goal(user_id, goal):
@@ -165,7 +171,10 @@ def update_exercise_routine(user_id):
         return
 
     # get exercise to update and info
-    exercises_index = int(input("Enter exercise index you wish to update: "))
+    exercises_index = s.get_int("Enter exercise index you wish to update: ")
+    if (exercises_index is None) or (not (0 <= exercises_index < len(exercises))):
+        print("invalid index")
+        return
     old_exercise = exercises[exercises_index][0]
     new_exercise = input("Enter updated exercise: ")
 
@@ -186,7 +195,10 @@ def delete_exercise_routine(user_id):
         return
 
     # get exercise to delete
-    exercises_index = int(input("Enter exercise index you wish to delete: "))
+    exercises_index = s.get_int("Enter exercise index you wish to delete: ")
+    if (exercises_index is None) or (not (0 <= exercises_index < len(exercises))):
+        print("invalid index")
+        return
     exercise = exercises[exercises_index][0]
 
     # delete exercise
@@ -216,16 +228,19 @@ def add_achievement(user_id):
 
 def update_achievement(user_id):
     # print achievements
-    achievement = conn.get_fitness_achievements(user_id)
-    if achievement:
-        p.print_fitness_achievements(achievement)
+    achievements = conn.get_fitness_achievements(user_id)
+    if achievements:
+        p.print_fitness_achievements(achievements)
     else:
         print("You have no fitness achievements")
         return
 
     # get achievement to update and info
-    achievement_index = int(input("Enter achievement index you wish to update: "))
-    old_achievement = achievement[achievement_index][0]
+    achievements_index = s.get_int("Enter achievement index you wish to update: ")
+    if (achievements_index is None) or (not (0 <= achievements_index < len(achievements))):
+        print("invalid index")
+        return
+    old_achievement = achievements[achievements_index][0]
     new_achievement = input("Enter updated achievement: ")
 
     # update achievement
@@ -245,7 +260,10 @@ def delete_achievement(user_id):
         return
 
     # get achievement to delete
-    achievements_index = int(input("Enter achievement index you wish to delete: "))
+    achievements_index = s.get_int("Enter achievement index you wish to delete: ")
+    if (achievements_index is None) or (not (0 <= achievements_index < len(achievements))):
+        print("invalid index")
+        return
     achievement = achievements[achievements_index][0]
 
     # delete achievement
@@ -301,8 +319,11 @@ def schedule_training_session(user_id):
         return
 
     # select trainer and print available times
-    selected_trainer = int(input("Please into the index of the trainer you'd like to book a session with: "))
-    trainer_id = trainers[selected_trainer][0]
+    trainer_index = s.get_int("Please into the index of the trainer you'd like to book a session with: ")
+    if (trainer_index is None) or (not (0 <= trainer_index < len(trainers))):
+        print("invalid index")
+        return
+    trainer_id = trainers[trainer_index][0]
     times = conn.get_trainer_times(trainer_id)
     if times:
         print("This trainer is available at these times")
@@ -343,7 +364,10 @@ def cancel_training_session(user_id):
         return
 
     # get training session to cancel
-    session_index = int(input("Enter session index you wish to delete: "))
+    session_index = s.get_int("Enter session index you wish to delete: ")
+    if (session_index is None) or (not (0 <= session_index < len(sessions))):
+        print("invalid index")
+        return
     session_id = sessions[session_index][0]
 
     # delete training session
@@ -372,7 +396,10 @@ def register_for_class(user_id):
         print("No classes available.")
 
     # get class to register for
-    class_index = int(input("Enter the class index: "))
+    class_index = s.get_int("Enter the class index: ")
+    if (class_index is None) or (not (0 <= class_index < len(classes))):
+        print("invalid index")
+        return
 
     # register for class
     if conn.register_for_class(user_id, classes[class_index][0]):
@@ -391,7 +418,10 @@ def drop_class(user_id):
         return
 
     # get class to drop
-    class_index = int(input("Enter the class index: "))
+    class_index = s.get_int("Enter the class index: ")
+    if (class_index is None) or (not (0 <= class_index < len(classes))):
+        print("invalid index")
+        return
 
     # delete class
     if conn.drop_class(user_id, classes[class_index][0]):
@@ -415,7 +445,10 @@ def pay_bill(user_id):
 
     # select bill to pay
     bills = conn.get_bills()
-    bills_index = int(input("Enter the index to pay: "))
+    bills_index = s.get_int("Enter the index to pay: ")
+    if (bills_index is None) or (not (0 <= bills_index < len(bills))):
+        print("invalid index")
+        return
     bill_id = bills[bills_index][0]
 
     # payment processor would go here, just setting status

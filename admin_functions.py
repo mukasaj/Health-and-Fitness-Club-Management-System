@@ -30,7 +30,10 @@ def book_room():
         return
 
     # get booking info
-    room_index = int(input("Enter room id you wish to book: "))
+    room_index = s.get_int("Enter room id you wish to book: ")
+    if (room_index is None) or (not (0 <= room_index < len(rooms))):
+        print("invalid index")
+        return
     class_id = input("Enter class id if this booking is for a class: ")
     if class_id == "":
         class_id = None
@@ -54,7 +57,10 @@ def update_booking():
         return
 
     # get booking info
-    booking_index = int(input("Enter index of booking to update: "))
+    booking_index = s.get_int("Enter index of booking to update: ")
+    if (booking_index is None) or (not (0 <= booking_index < len(bookings))):
+        print("invalid index")
+        return
     date = input("Enter date of booking: ")
     time = s.get_time_from_user("Enter booking time:")
 
@@ -79,7 +85,10 @@ def delete_booking():
         return
 
     # get booking to delete
-    booking_index = int(input("Enter index of booking to cancel: "))
+    booking_index = s.get_int("Enter index of booking to cancel: ")
+    if (booking_index is None) or (not (0 <= booking_index < len(bookings))):
+        print("invalid index")
+        return
 
     # delete booking
     if conn.delete_room_booking(bookings[booking_index][0]):
@@ -105,7 +114,10 @@ def update_maintenance_date():
         return
 
     # get new info
-    equipment_index = int(input("Enter the index of equipment to update: "))
+    equipment_index = s.get_int("Enter the index of equipment to update: ")
+    if (equipment_index is None) or (not (0 <= equipment_index < len(equipment))):
+        print("invalid index")
+        return
     maintenance_date = input("Enter the new maintenance date(yyyy-mm-dd): ")
     equipment_id = equipment[equipment_index][0]
 
@@ -135,7 +147,10 @@ def update_class_schedule():
         return
 
     # get new class info
-    class_index = int(input("Enter class index: "))
+    class_index = s.get_int("Enter class index: ")
+    if (class_index is None) or (not (0 <= class_index < len(classes))):
+        print("invalid index")
+        return
     date = input("Enter new date: ")
     time = s.get_time_from_user("Enter new time: ")
 
