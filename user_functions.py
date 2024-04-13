@@ -311,7 +311,7 @@ def drop_class(user_id):
         print("Failed to drop class")
 
 def view_bills(user_id):
-    bills = conn.get_bills()
+    bills = conn.get_user_bills(user_id)
     if bills:
         p.print_bills(bills)
     else:

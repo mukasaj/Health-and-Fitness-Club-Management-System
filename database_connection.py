@@ -238,9 +238,10 @@ class DatabaseConnection:
         return self.execute(sql, sql_data)
 
     def get_user_bills(self, user_id):
-        # selecting all bills
-        sql = "SELECT * FROM bills"
-        return self.execute_select(sql)
+        # selecting bills for a given user
+        sql = "SELECT * FROM bills WHERE user_id = %s"
+        sql_data = (user_id,)
+        return self.execute_select(sql, sql_data)
 
     def update_bill_status(self, user_id, bill_id, status):
         sql = "UPDATE bills SET status = %s WHERE user_id = %s AND bill_id = %s"
