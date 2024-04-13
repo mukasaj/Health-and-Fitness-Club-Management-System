@@ -38,5 +38,27 @@ q - Quit
 ```
 You can select any of these options and then follow the prompts. 
 
+You can use these accounts to login:
+<ul>
+<li>USER ACCOUNTS</li>
+<li>Email: "jane@gmail.com" Password: "jane"</li>
+<li>Email: "jim@gmail.com" Password: "jim"</li>
+<li>Email: "john@gmail.com" Password: "john</li>
+<li>Email: "sarah@gmail.com" Password "sarah"</li>
+</ul>
+<ul>
+<li>TRAINER ACCOUNTS</li>
+<li>Email: "tim@fitness.com" Password: "tim"</li>
+<li>Email: "kyle@fitness.com" Password: "kyle"</li>
+<li>Email: "abby@fitness.com" Password: "abby"</li>
+<li>Email: "sam@fitness.com" Password "sam"</li>
+</ul>
+<ul>
+<li>ADMIN ACCOUNTS</li>
+<li>Email: "justin@fitness.com" Password: "justin"</li>
+<li>Email: "paul@fitness.com" Password: "paul"</li>
+<li>Email: "hailey@fitness.com" Password: "hailey"</li>
+</ul>
+
 <hr/>
 Youtube Link: N/A

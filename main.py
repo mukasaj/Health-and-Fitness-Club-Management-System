@@ -22,13 +22,13 @@ def user_functions():
     # user main menu
     choice = None
     while choice != "q":
-        print("User functions:")
+        print("\nUser functions:")
         print("1 - Profile Management")
         print("2 - Dashboard")
         print("3 - Schedule Management")
         print("4 - Billing Menu")
         print("q - Logout")
-        choice = input(">>>")
+        choice = input(">>> ")
 
         if choice == "1":
             profile_management(user_id)
@@ -45,7 +45,7 @@ def profile_management(user_id):
     # profile management menu
     choice = None
     while choice != "q":
-        print("User Schedule Management Functions:")
+        print("\nUser profile management:")
         print("1 - Update personal information")
         print("2 - Manage fitness goals")
         print("3 - Manage health metrics")
@@ -54,7 +54,7 @@ def profile_management(user_id):
         print("6 - Update password")
         print("q - Back")
 
-        choice = input(">>>")
+        choice = input(">>> ")
 
         if choice == "1":
             u.update_personal_information(user_id)
@@ -76,13 +76,13 @@ def manage_fitness_goals(user_id):
     # fitness goals management menu
     choice = None
     while choice != "q":
-        print("Fitness goals:")
+        print("\nFitness goals:")
         print("1 - View fitness goals")
         print("2 - Add fitness goal")
         print("3 - Update fitness goal")
         print("4 - Delete fitness goal")
         print("q - Back")
-        choice = input(">>>")
+        choice = input(">>> ")
 
         if choice == "1":
             u.view_goals(user_id)
@@ -103,11 +103,11 @@ def manage_health_metrics(user_id):
     # health metrics menu
     choice = None
     while choice != "q":
-        print("Health metrics:")
+        print("\nHealth metrics:")
         print("1 - View health metrics")
         print("2 - Update health metrics")
         print("q - Back")
-        choice = input(">>>")
+        choice = input(">>> ")
 
         if choice == "1":
             u.view_health_metrics(user_id)
@@ -121,13 +121,13 @@ def manage_exercise_routines(user_id):
     # exercise routine menu
     choice = None
     while choice != "q":
-        print("Health metrics:")
+        print("\nExercise routines:")
         print("1 - View my exercises routines")
         print("2 - Add an exercise routine")
         print("3 - Update an exercise routine")
         print("4 - Delete an exercise routine")
         print("q - Back")
-        choice = input(">>>")
+        choice = input(">>> ")
 
         if choice == "1":
             u.view_exercise_routines(user_id)
@@ -148,13 +148,13 @@ def manage_fitness_achievements(user_id):
     # fitness achievements menu
     choice = None
     while choice != "q":
-        print("Health metrics:")
+        print("\nFitness achievements:")
         print("1 - View my achievement")
         print("2 - Add an achievement")
         print("3 - Update an achievement")
         print("4 - Delete an achievement")
         print("q - Back")
-        choice = input(">>>")
+        choice = input(">>> ")
 
         if choice == "1":
             u.view_achievements(user_id)
@@ -175,7 +175,7 @@ def user_schedule_management(user_id):
     # user schedule management menu
     choice = None
     while choice != "q":
-        print("User Schedule Management Functions:")
+        print("\nUser schedule management:")
         print("1 - View training sessions schedule")
         print("2 - Schedule training sessions")
         print("3 - Cancel training session")
@@ -184,7 +184,7 @@ def user_schedule_management(user_id):
         print("6 - Drop class")
         print("q - Back")
 
-        choice = input(">>>")
+        choice = input(">>> ")
 
         if choice == "1":
             u.view_training_sessions(user_id)
@@ -209,12 +209,12 @@ def user_billing_management(user_id):
     # user schedule management menu
     choice = None
     while choice != "q":
-        print("User Schedule Management Functions:")
+        print("\nUser billing management:")
         print("1 - View my bills")
         print("2 - Pay a bill")
         print("q - Back")
 
-        choice = input(">>>")
+        choice = input(">>> ")
 
         if choice == "1":
             u.view_bills(user_id)
@@ -238,10 +238,11 @@ def trainer_functions():
     # trainer main menu
     choice = None
     while choice != "q":
+        print("\nTrainer functions:")
         print("1 - Schedule Management")
         print("2 - Member Profile Viewing")
         print("q - Quit")
-        choice = input(">>>")
+        choice = input(">>> ")
 
         if choice == "1":
             trainer_schedule_management(trainer_id)
@@ -259,7 +260,7 @@ def trainer_schedule_management(trainer_id):
         print("3 - Delete timeslot from available times")
         print("q - Back")
 
-        choice = input(">>>")
+        choice = input(">>> ")
 
         if choice == "1":
             t.print_timeslots(trainer_id)
@@ -276,10 +277,10 @@ def member_profile_viewing(trainer_id):
     # member profile viewing menu
     choice = None
     while choice != "q":
-        print("Trainer member viewing:")
+        print("\nTrainer member viewing:")
         print("1 - Search for member using first and last name")
         print("2 - Search for member using email")
-        choice = input(">>>")
+        choice = input(">>> ")
 
         if choice == "1":
             t.get_user_by_name()
@@ -300,12 +301,13 @@ def admin_functions():
     # admin main menu
     choice = None
     while choice != "q":
+        print("\nAdmin functions:")
         print("1 - Room Booking Management")
         print("2 - Equipment Maintenance Monitoring")
         print("3 - Class Schedule Updating")
         print("4 - Billing and Payment Processing")
         print("q - Quit")
-        choice = input(">>>")
+        choice = input(">>> ")
 
         if choice == "1":
             room_booking_management()
@@ -321,7 +323,7 @@ def room_booking_management():
     # room booking menu
     choice = None
     while choice != "q":
-        print("Room booking management:")
+        print("\nRoom booking management:")
         print("1 - View rooming bookings")
         print("2 - Add rooming booking")
         print("3 - Updating rooming booking")
@@ -349,7 +351,7 @@ def equipment_maintenance_monitoring():
     # equipment maintenance menu
     choice = None
     while choice != "q":
-        print("Equipment Maintenance Monitoring")
+        print("\nEquipment Maintenance monitoring")
         print("1 - View equipment maintenance dates")
         print("2 - Update equipment maintenance dates")
         print("q - Back")
@@ -369,11 +371,11 @@ def class_schedule_updating():
     # class schedule updating menu
     choice = None
     while choice != "q":
-        print("Class Schedule Updating:")
+        print("\nClass Schedule Updating:")
         print("1 - View class list")
         print("2 - Update class schedule")
         print("q - Back")
-        choice = input(">>>")
+        choice = input(">>> ")
 
         if choice == "1":
             a.view_classes()
@@ -387,11 +389,11 @@ def bill_and_payment_processing():
     # bill and payment processing menu
     choice = None
     while choice != "q":
-        print("Billing and Payment:")
+        print("\nBilling and Payment:")
         print("1 - View bills")
         print("2 - Create new invoice")
         print("q - Back")
-        choice = input(">>>")
+        choice = input(">>> ")
 
         if choice == "1":
             a.view_bills()
@@ -413,7 +415,7 @@ if __name__ == "__main__":
         print("4 - Register for User account")
         print("q - Quit")
 
-        choice = input(">>>")
+        choice = input(">>> ")
 
         if choice == "1":
             user_functions()
