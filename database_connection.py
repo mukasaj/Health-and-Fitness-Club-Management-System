@@ -329,7 +329,7 @@ class DatabaseConnection:
         # equipment maintenance date updating
         sql = "UPDATE equipment SET maintenance_date = %s WHERE equipment_id = %s"
         sql_date = (maintence_date, equipment_id)
-        return self.execute_select(sql, sql_date)
+        return self.execute(sql, sql_date)
 
     def update_class_schedule(self, class_id, date, time):
         # updating class schedule to change date and time

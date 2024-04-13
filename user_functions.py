@@ -304,8 +304,8 @@ def drop_class(user_id):
     else:
         print("You are not registered for any classes.")
         return
-    class_id = input("Enter the class id of the class you wish to drop: ")
-    if conn.drop_class(user_id, class_id):
+    class_index = int(input("Enter the class index: "))
+    if conn.drop_class(user_id, classes[class_index][0]):
         print("Successfully dropped class")
     else:
         print("Failed to drop class")
